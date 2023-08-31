@@ -1,0 +1,30 @@
+.container {
+  background-color: #313131;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero {
+  max-width: 480px;
+  object-fit: contain;
+  width: auto;
+  height: auto;
+}
+
+.title {
+  color: #f0f0f0;
+  text-align: center;
+  margin: 1.5rem;
+  line-height: 150%;
+}
