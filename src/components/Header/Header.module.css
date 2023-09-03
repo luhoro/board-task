@@ -26,7 +26,7 @@
 
 .logo span {
   font-weight: bold;
-  color: #10a034;
+  color: var(--color-green);
   padding-left: 3px;
   display: inline-block;
   transform: scale(1.20);

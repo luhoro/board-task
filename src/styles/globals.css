@@ -7,3 +7,12 @@
   list-style: none;
   font-family: 'Montserrat', sans-serif;
 }
+
+body {
+  min-height: 100vh;
+}
+
+:root {
+  --color-green: #16963c;
+  --color-green-hover: #196e32;
+}
