@@ -1,11 +1,16 @@
 import styles from 'src/styles/Home.module.css'
 import Image from 'next/image'
+import Head from 'next/head'
 
 import heroImg from 'public/assets/hero.svg'
 
 export const Home = () => {
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Board+ | Organize suas tarefas de forma fácil</title>
+      </Head>
+      
       <main className={styles.main}>
         <div className={styles.logoContent}>
           <Image
