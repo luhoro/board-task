@@ -1,13 +1,50 @@
 import { GetServerSideProps } from 'next'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import styles from './Dashboard.module.css'
 import Head from 'next/head'
 
 import { getSession } from 'next-auth/react'
 import Textarea from '@/src/components/Textarea'
-import { FiShare2 } from 'react-icons/fi'
-import { FaTrash } from 'react-icons/fa'
+import { FiShare2, FiTrash } from 'react-icons/fi'
 
-const Dashboard = () => {
+import { db } from 'src/services/firebaseConection'
+import { addDoc, collection } from 'firebase/firestore'
+
+interface DashboardProps {
+  user: {
+    email: string
+  }
+}
+
+const Dashboard = ({ user }: DashboardProps) => {
+  const [input, setInput] = useState('')
+  const [publicTask, setPublicTask] = useState(false)
+
+  const handleChangePublic = (event: ChangeEvent<HTMLInputElement>) => {
+    setPublicTask(event.target.checked)
+  }
+
+  const handleRegisterTask = async (event: FormEvent) => {
+    event.preventDefault()
+
+    if (input === '') return
+    
+    try {
+      await addDoc(collection(db, 'tasks'), {
+        task: input,
+        created: new Date(),
+        user: user?.email,
+        public: publicTask
+      })
+
+      setInput('')
+      setPublicTask(false)
+
+    } catch(error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -19,13 +56,19 @@ const Dashboard = () => {
           <div className={styles.contentForm}>
             <h1 className={styles.title}>Qual é a sua tarefa?</h1>
 
-            <form>
-              <Textarea placeholder="Digite qual sua tarefa..." />
+            <form onSubmit={handleRegisterTask}>
+              <Textarea
+                placeholder="Digite qual sua tarefa..."
+                value={input}
+                onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setInput(event.target.value)}
+              />
               <div className={styles.checkboxArea}>
                 <input
                   id="public"
                   type="checkbox"
-                  className={styles.checkbox }
+                  className={styles.checkbox}
+                  checked={publicTask}
+                  onChange={handleChangePublic}
                 />
                 <label htmlFor="public">Deixar tarefa pública</label>
               </div>
@@ -52,8 +95,8 @@ const Dashboard = () => {
             <div className={styles.taskContent}>
               <p>Minha primeira tarefa de exemplo</p>
               <button className={styles.trash}>
-                <FaTrash
-                  size={24}
+                <FiTrash
+                  size={22}
                   color='#ea3140'
                 />
               </button>
@@ -80,6 +123,10 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     }
   }
   return {
-    props: {},
+    props: {
+      user: {
+        email: session?.user?.email,
+      }
+    },
   }
 }

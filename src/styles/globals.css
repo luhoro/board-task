@@ -16,3 +16,10 @@ body {
   --color-green: #16963c;
   --color-green-hover: #196e32;
 }
+
+button {
+  background-color: transparent;
+  border: 0;
+  margin: 0 .5rem;
+  cursor: pointer;
+}

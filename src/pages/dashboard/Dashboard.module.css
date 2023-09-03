@@ -2,13 +2,6 @@
   width: 100%;
 }
 
-.container button {
-  background-color: transparent;
-  border: 0;
-  margin: 0 .5rem;
-  cursor: pointer;
-}
-
 .content {
   background-color: #202020;
   width: 100%;
