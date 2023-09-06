@@ -60,3 +60,11 @@
   background-color: var(--color-green-hover);
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  filter: opacity(70%);
+}
+
+.button:disabled:hover {
+  background-color: var(--color-green);
+}
