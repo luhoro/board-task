@@ -41,7 +41,6 @@
 
 .button {
   width: 100%;
-  border: none;
   border-radius: 0.2rem;
   color: #f0f0f0;
   background-color: var(--color-green);
@@ -77,38 +76,56 @@
 }
 
 .task {
-  margin-bottom: 0.8rem;
+  margin-bottom: 2rem;
   line-height: 140%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  border: 1.5px solid #c2c2c2;
-  border-radius: 0.2rem;
+  border: 1.5px solid #d4d4d4;
+  border-radius: 0.5rem;
   padding: 0.6rem;
+  transition: all 200ms ease-in;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.tagContainer {
+.shareButton {
+  padding: .3rem .6rem;
+  background-color: var(--color-green);
+  border-radius: .3rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 0.5rem;
+  gap: .3rem;
+  width: fit-content;
+  margin-bottom: .5rem;
+  transition: all 200ms;
 }
 
-.tag {
-  padding: .1rem .4rem;
-  background-color: var(--color-green);
+.shareButton span {
   color: #f0f0f0;
-  border-radius: .2rem;
   font-size: 12px;
+}
+
+.shareButton:hover {
+  background-color: var(--color-green-hover);
 }
 
 .taskContent {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
 }
 
 .taskContent p {
   white-space: pre-wrap;
+}
+
+.trash {
+  border-radius: .3rem;
+  background-color: #ea3140;
+  padding: 2px;
+}
+
+.trash:hover {
+  background-color: #da5d68;
 }

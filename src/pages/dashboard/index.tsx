@@ -16,7 +16,7 @@ import {
   where,
   onSnapshot,
   doc,
-  deleteDoc
+  deleteDoc,
 } from 'firebase/firestore'
 import Link from 'next/link'
 
@@ -35,7 +35,6 @@ interface TaskProps {
 }
 
 const Dashboard = ({ user }: DashboardProps) => {
-  
   const [input, setInput] = useState('')
   const [publicTask, setPublicTask] = useState(false)
   const [tasks, setTasks] = useState<TaskProps[]>([])
@@ -146,32 +145,34 @@ const Dashboard = ({ user }: DashboardProps) => {
           <h1>Minhas tarefas</h1>
 
           {tasks.map((item) => (
-            <article key={item.id} className={styles.task}>
+            <>
               {item.public && (
-                <div className={styles.tagContainer}>
-                  <label className={styles.tag}>PÚBLICO</label>
-
-                  <button className={styles.shareButton} onClick={() => handleShare(item.id)}>
-                    <FiShare2 size={22} color="#16963c" />
-                  </button>
-                </div>
+                <button
+                  className={styles.shareButton}
+                  onClick={() => handleShare(item.id)}
+                >
+                  <span>PÚBLICO</span>
+                  <FiShare2 size={22} color="#ffffff" />
+                </button>
               )}
 
-              <div className={styles.taskContent}>
-
+              <article key={item.id} className={styles.task}>
                 {item.public ? (
-                  <Link href={`/task/${item.id}`}>
+                  <Link href={`/task/${item.id}`} className={styles.taskPublic}>
                     <p>{item.task}</p>
                   </Link>
                 ) : (
                   <p>{item.task}</p>
                 )}
 
-                <button className={styles.trash} onClick={() => handleDeleteTask(item.id)}>
-                  <FiTrash size={22} color="#ea3140" />
+                <button
+                  className={styles.trash}
+                  onClick={() => handleDeleteTask(item.id)}
+                >
+                  <FiTrash size={22} color="#ffffff" />
                 </button>
-              </div>
-            </article>
+              </article>
+            </>
           ))}
         </section>
       </main>

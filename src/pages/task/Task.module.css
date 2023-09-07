@@ -68,3 +68,37 @@
 .button:disabled:hover {
   background-color: var(--color-green);
 }
+
+.comment {
+  border: 1px solid #c9c9c9;
+  border-radius: .5rem;
+  padding: .6rem;
+  margin-bottom: 2rem;
+}
+
+.headComment {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .5rem;
+}
+
+.commentLabel {
+  background-color: #dbdbdb;
+  padding: .2rem .3rem;
+  border-radius: .3rem;
+}
+
+.trash {
+  border-radius: .3rem;
+  background-color: #ea3140;
+  padding: 2px;
+}
+
+.trash:hover {
+  background-color: #da5d68;
+}
+
+.comment p {
+  white-space: pre-wrap;
+}
